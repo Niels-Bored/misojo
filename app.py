@@ -41,7 +41,7 @@ def login():
     """
 
     if request.method=="GET":           
-        return render_template('index.html', error=True)
+        return render_template('index.html', error="")
     elif request.method=="POST":
         user=request.form['user']
         password=request.form['password']
@@ -50,7 +50,7 @@ def login():
             session["user"]=user
             return redirect(url_for('index'))
         else:
-            return render_template('index.html', error=True)    
+            return render_template('index.html', error="Invalid credentials")    
 
 @app.route("/")
 @validate_session()

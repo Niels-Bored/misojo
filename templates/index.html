@@ -14,12 +14,16 @@
         <label class="label-login">Password:</label>
         <input class="input-login" name="password" type="password" required>
         <input type="submit">
+        <!-- <input type="submit" onclick="validate()"> -->
+        <p>{{error}}</p>
     </form>
     <script>
-        var error_login = "{{error}}"
-        if (error_login) {
-            alert ("Incorrect user or password, Try again")
-        }
+        /* function validate(){
+            var error_login = "{{error}}"
+            if (error_login) {
+                alert ("Incorrect user or password, Try again")
+            }
+        } */
     </script>
 </body>
 </html>
