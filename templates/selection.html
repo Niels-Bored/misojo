@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+    <title>State Selection</title>
+</head>
+<body>
+    <section class="options">
+        <a href="/texas/">
+            <div class="option">
+                <h1>Texas</h1>
+                <img src="{{ url_for('static', filename='Images/texas.png') }}">
+            </div>
+        </a>
+        
+        <a href="/california/">
+            <div class="option">
+                <h1>California</h1>
+                <img src="{{ url_for('static', filename='Images/california.png') }}">
+            </div>
+        </a>
+        <a href="/new_mexico/">
+            <div class="option">
+                <h1>New Mexico</h1>
+                <img src="{{ url_for('static', filename='Images/new_mexico.jpg') }}">
+            </div>
+        </a>
+    </section>
+</body>
+</html>
