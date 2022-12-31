@@ -4,6 +4,7 @@ from pdfmaker_Texas.PDFMaker import generatePDF as pdfTexas
 from mysql import MySQL
 from functools import wraps
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,6 +17,7 @@ DATABASE_PASSWORD = os.environ['DATABASE_PASSWORD']
 Database = MySQL(DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD)
 
 app = Flask(__name__)
+CORS(app)
 app.secret_key = b'bb,hjd87li7fiopsddfrgt5'
 
 def validate_session():
