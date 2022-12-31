@@ -116,7 +116,7 @@ def logout():
 @app.route("/file/<filename>/")
 @validate_session()
 def file(filename):
-    time.sleep(3)
+    time.sleep(1)
     file_path=os.path.join(os.path.dirname(__file__),"files",filename+".pdf")
     with open(file_path, 'rb') as bites:
         return send_file(

@@ -142,5 +142,6 @@ form.addEventListener ("click", function (e) {
 
 submit = document.querySelector('.formulario [type="submit"]')
 submit.addEventListener ("click", function (e) {
+    e.preventDefault()
     guardarDatos()
 })
