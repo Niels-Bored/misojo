@@ -45,6 +45,7 @@ function guardarDatos() {
     var city = document.getElementById("city").value;
     var state = document.getElementById("state").value;
     var zip_code = document.getElementById("zip_code").value;
+    var odometer = document.getElementById("odometer").value;
 
     var data = {
         "plate": plate,
@@ -61,7 +62,8 @@ function guardarDatos() {
         "address": address,
         "city": city,
         "state": state,
-        "zip_code": zip_code
+        "zip_code": zip_code,
+        "odometer": odometer
     }
     //932fc68172e52db6f95dd88cd9c0311f
 

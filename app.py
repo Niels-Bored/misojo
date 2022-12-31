@@ -1,7 +1,8 @@
 import os
 import io
 import time
-from pdfmaker_Texas.PDFMaker import generatePDF as pdfTexas 
+from pdfmaker_Texas.PDFMaker import generatePDF as pdfTexas
+from pdfmaker_California.california_plates import generatePDF as pdfCalifornia 
 from mysql import MySQL
 from functools import wraps
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
@@ -92,8 +93,7 @@ def california():
         return render_template('california.html', user=userdata["user"], counter=userdata["counter"])
     elif request.method=="POST":
         json_data = request.get_json()
-        pdfTexas(json_data["plate"], json_data["year"], json_data["make"], json_data["issue_date"], json_data["expiration_date"], json_data["vin"], json_data["major_color"], json_data["minor_color"], json_data["body"], json_data["model"], json_data["owner"], json_data["address"], json_data["city"], json_data["state"], json_data["zip_code"])
-        
+        pdfCalifornia(json_data["plate"], json_data["year"], json_data["make"], json_data["issue_date"], json_data["expiration_date"], json_data["vin"], json_data["major_color"], json_data["minor_color"], json_data["body"], json_data["model"], json_data["owner"], json_data["address"], json_data["city"], json_data["state"], json_data["zip_code"], json_data["odometer"])
         # Get last counter
         sql = f"""SELECT counter FROM users WHERE user = "{session['user']}";;"""
         counter = Database.run_sql(sql)[0]["counter"]

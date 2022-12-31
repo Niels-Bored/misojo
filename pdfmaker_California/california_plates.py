@@ -23,53 +23,41 @@ pdfmetrics.registerFont(TTFont('dealer', os.path.join(current_folder, 'dealerpla
 pdfmetrics.registerFont(TTFont('helvetica', os.path.join(current_folder, 'Helvetica.ttf')))
 pdfmetrics.registerFont(TTFont('helvetica_bold', os.path.join(current_folder, 'Helvetica-Bold.ttf')))
 
-year = "2022"
-make = "TOYO"
-vin = "1FAFP34N65W214191"
-major_color = "SILVER"
-minor_color = "GREEN"
-body = "4D"
-model = "ZX4"
-owner = "ARTURO SANCHEZ"
-address = "2302 LOCKWOOD DR."
-city = "HOUSTON"
-state = "TX"
-zip_code = "77020"
+def generatePDF(plate, year, make, issue_date, expiration_date, vin, major_color, minor_color, body, model, owner, address, city, state, zip_code, odometer):
+	today = date.today()
+	issue_date = str(today.month) + "/" + str(today.day) + "/" + str(today.year)
+	now = datetime.now()
+	new_date = now + timedelta(days=90)
+	expiration_date = str(new_date.month) + "/" + str(new_date.day) + "/" + str(new_date.year)
+	expiration_year = str(new_date.year)
+	month = str(new_date.month)
 
-today = date.today()
-issue_date = str(today.month) + "/" + str(today.day) + "/" + str(today.year)
-now = datetime.now()
-new_date = now + timedelta(days=90)
-expiration_date = str(new_date.month) + "/" + str(new_date.day) + "/" + str(new_date.year)
-expiration_year = str(new_date.year)
-month = str(new_date.month)
+	if(month=="1"):
+		expiration_month="JAN"
+	elif(month=="2"):
+		expiration_month="FEB"	
+	elif(month=="3"):
+		expiration_month="MAR"	
+	elif(month=="4"):
+		expiration_month="APR"	
+	elif(month=="5"):
+		expiration_month="MAY"	
+	elif(month=="6"):
+		expiration_month="JUN"	
+	elif(month=="7"):
+		expiration_month="JUL"	
+	elif(month=="8"):
+		expiration_month="AUG"	
+	elif(month=="9"):
+		expiration_month="SEP"	
+	elif(month=="10"):
+		expiration_month="OCT"	
+	elif(month=="11"):
+		expiration_month="NOV"	
+	elif(month=="12"):
+		expiration_month="DEC"	
 
-if(month=="1"):
-	expiration_month="JAN"
-elif(month=="2"):
-	expiration_month="FEB"	
-elif(month=="3"):
-	expiration_month="MAR"	
-elif(month=="4"):
-	expiration_month="APR"	
-elif(month=="5"):
-	expiration_month="MAY"	
-elif(month=="6"):
-	expiration_month="JUN"	
-elif(month=="7"):
-	expiration_month="JUL"	
-elif(month=="8"):
-	expiration_month="AUG"	
-elif(month=="9"):
-	expiration_month="SEP"	
-elif(month=="10"):
-	expiration_month="OCT"	
-elif(month=="11"):
-	expiration_month="NOV"	
-elif(month=="12"):
-	expiration_month="DEC"	
-
-def generatePDF(plate, year, make, issue_date, expiration_date, vin, major_color, minor_color, body, model, owner, address, city, state, zip_code, expiration_month, expiration_year,odometer):
+	
 	#plate = chr(random.randint(65, 90)) + chr(random.randint(65, 90)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9))
 	ros = str(random.randint(0, 9))+str(random.randint(0, 9))+str(random.randint(0, 9))+str(random.randint(0, 9))+str(random.randint(0, 9))+str(random.randint(0, 9))+str(random.randint(0, 9))	
 	qr = qrcode.QRCode(
@@ -191,4 +179,4 @@ def generatePDF(plate, year, make, issue_date, expiration_date, vin, major_color
 	merger.write(file_output)
 	merger.close()	
 if __name__=='__main__':	
-	generatePDF("", "", "", "issue_date", "expiration_date", "values[2]", "major_color", "minor_color", "values[3]", "values[4]", "values[5]", "values[6]", "values[7]", "values[8]", "values[9]", "expiration_month", "expiration_year", "values[10]")
+	generatePDF("", "", "", "issue_date", "expiration_date", "values[2]", "major_color", "minor_color", "values[3]", "values[4]", "values[5]", "values[6]", "values[7]", "values[8]", "values[9]", "expiration_month")
