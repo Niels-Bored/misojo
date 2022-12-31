@@ -77,10 +77,9 @@ function guardarDatos() {
         });
 
         if(rawResponse.status ==200){
-            debugger
             console.log(rawResponse)
             window.open("../file/"+plate)
-            //window.location.reload()
+            window.location.reload()
             console.log("ok")
         }else{
             alert("There has been an error");
