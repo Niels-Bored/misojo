@@ -138,5 +138,9 @@ function cambiarMes(mes_numerico){
 form = document.querySelector (".formulario")
 form.addEventListener ("click", function (e) {
     e.preventDefault()
+})
+
+submit = document.querySelector('.formulario [type="submit"]')
+submit.addEventListener ("click", function (e) {
     guardarDatos()
 })
