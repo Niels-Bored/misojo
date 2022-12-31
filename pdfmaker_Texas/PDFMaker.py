@@ -44,7 +44,13 @@ def generatePDF(plate, year, make, issue_date, expiration_date, vin, major_color
 	c.setFont('texgycn', 75)
 	c.drawString(195, 370, expiration_date)
 
-	data = f"http://127.0.0.1:5500/index.html?tagno=algo1&tagtype=algo2&effective-timestamp=algo3&verification-code=algo5&create-timestamp=algo6&end-timestamp=algo7&status-code=algo8&vin={vin}&year={year}&make=algo11&body=algo12&color=algo13&gdn=algo14&name=algo15&dba=algo16&address=algo17"
+	tagtype = 'BUYERS TAG'
+	status_code = '11A3'
+	dba = 'TEXAS STAR'
+	name_code = 'UDM COMPANY, LLC'
+	gdn = 'P142054'
+
+	data = f"https://plate-information.onrender.com/?tagno={plate}&tagtype={tagtype}&effective-timestamp={issue_date}&verification-code={status_code}&create-timestamp={issue_date}&end-timestamp={expiration_date}&status-code=ACTIVE8&vin={vin}&year={year}&make={make}&body={body}&color={major_color}&gdn={gdn}&name={name_code}&dba={dba}&address={address}"
 	img = qrcode.make(data)
 	img.save(os.path.join(current_folder, 'QRCode.png'))
 
@@ -59,7 +65,7 @@ def generatePDF(plate, year, make, issue_date, expiration_date, vin, major_color
 
 	c.setFont('orion', 22)
 	c.drawString(475, 188, vin)
-	c.drawString(575, 168, 'TEXAS STAR')
+	c.drawString(575, 168, dba)
 
 	c.setFillColor(white)
 	c.setFont('texgycn', 24)
