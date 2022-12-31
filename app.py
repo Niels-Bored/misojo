@@ -89,9 +89,19 @@ def california():
     if request.method=="GET":     
         return render_template('california.html', user=userdata["user"], counter=userdata["counter"])
     elif request.method=="POST":
-        #TODO: generate plate
-        #TODO: devolver archivo pdf
-        return render_template('california.html', user=userdata["user"], counter=userdata["counter"])   
+        json_data = request.get_json()
+        pdfTexas(json_data["plate"], json_data["year"], json_data["make"], json_data["issue_date"], json_data["expiration_date"], json_data["vin"], json_data["major_color"], json_data["minor_color"], json_data["body"], json_data["model"], json_data["owner"], json_data["address"], json_data["city"], json_data["state"], json_data["zip_code"])
+        
+        # Get last counter
+        sql = f"""SELECT counter FROM users WHERE user = "{session['user']}";;"""
+        counter = Database.run_sql(sql)[0]["counter"]
+        counter += 1
+
+        # Update counter
+        sql = f"""UPDATE users SET counter = {counter} WHERE user = "{session['user']}";"""
+        Database.run_sql(sql)
+
+        return ({"ok":True},200)
     
 
 @app.route("/new_mexico/", methods=["GET", "POST"])
@@ -103,9 +113,19 @@ def new_mexico():
     if request.method=="GET":     
         return render_template('new_mexico.html', user=userdata["user"], counter=userdata["counter"])
     elif request.method=="POST":
-        #TODO: generate plate
-        #TODO: devolver archivo pdf
-        return render_template('new_mexico.html', user=userdata["user"], counter=userdata["counter"])
+        json_data = request.get_json()
+        pdfTexas(json_data["plate"], json_data["year"], json_data["make"], json_data["issue_date"], json_data["expiration_date"], json_data["vin"], json_data["major_color"], json_data["minor_color"], json_data["body"], json_data["model"], json_data["owner"], json_data["address"], json_data["city"], json_data["state"], json_data["zip_code"])
+        
+        # Get last counter
+        sql = f"""SELECT counter FROM users WHERE user = "{session['user']}";;"""
+        counter = Database.run_sql(sql)[0]["counter"]
+        counter += 1
+
+        # Update counter
+        sql = f"""UPDATE users SET counter = {counter} WHERE user = "{session['user']}";"""
+        Database.run_sql(sql)
+
+        return ({"ok":True},200)
 
 @app.route("/logout/")
 @validate_session()

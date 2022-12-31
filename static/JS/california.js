@@ -1,5 +1,5 @@
 var plate = String.fromCharCode(64 + getRandomInt(1,26))+""+String.fromCharCode(64 + getRandomInt(1,26))+""+getRandomInt(0,9)+""+getRandomInt(0,9)+""+getRandomInt(0,9)+""+getRandomInt(0,9)+""+""+getRandomInt(0,9);
- 
+
 document.getElementById("plate-label").innerHTML=plate;
 document.getElementById("plate").value = plate
 
@@ -77,7 +77,9 @@ function guardarDatos() {
         });
 
         if(rawResponse.status ==200){
+            window.open("../file/"+plate)
             window.location.reload()
+            console.log("ok")
         }else{
             alert("There has been an error");
         }
@@ -135,6 +137,11 @@ function cambiarMes(mes_numerico){
 // Catch click of submit button in home
 form = document.querySelector (".formulario")
 form.addEventListener ("click", function (e) {
+    e.preventDefault()
+})
+
+submit = document.querySelector('.formulario #generate')
+submit.addEventListener ("click", function (e) {
     e.preventDefault()
     guardarDatos()
 })
