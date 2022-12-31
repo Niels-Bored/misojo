@@ -41,7 +41,7 @@ def login():
     """
 
     if request.method=="GET":           
-        return render_template('index.html', error=False)
+        return render_template('index.html', error=True)
     elif request.method=="POST":
         user=request.form['user']
         password=request.form['password']
