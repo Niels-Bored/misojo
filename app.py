@@ -1,5 +1,6 @@
 import os
 import io
+import time
 from pdfmaker_Texas.PDFMaker import generatePDF as pdfTexas 
 from mysql import MySQL
 from functools import wraps
@@ -115,6 +116,7 @@ def logout():
 @app.route("/file/<filename>/")
 @validate_session()
 def file(filename):
+    time.sleep(3)
     file_path=os.path.join(os.path.dirname(__file__),"files",filename+".pdf")
     with open(file_path, 'rb') as bites:
         return send_file(
