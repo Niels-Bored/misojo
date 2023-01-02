@@ -46,7 +46,7 @@ def generatePDF(plate, year, make, issue_date, expiration_date, vin, major_color
 
 	tagtype = 'BUYERS TAG'
 	status_code = '11A3'
-	dba = 'TEXAS STAR'
+	dba = 'ROYAL MOTORS'
 	name_code = 'UDM COMPANY, LLC'
 	gdn = 'P142054'
 
@@ -65,7 +65,7 @@ def generatePDF(plate, year, make, issue_date, expiration_date, vin, major_color
 
 	c.setFont('orion', 22)
 	c.drawString(475, 188, vin)
-	c.drawString(575, 168, dba)
+	c.drawString(533, 168, dba)
 
 	c.setFillColor(white)
 	c.setFont('texgycn', 24)
