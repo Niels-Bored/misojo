@@ -134,7 +134,7 @@ def generatePDF(plate, year, make, issue_date, expiration_date, vin, major_color
 	c.drawString(127, 312, "BUYER is required to keep this receipt in the vehicle until vehicle is")
 	c.drawString(127, 294, "registered and metal plates are placed on the vehicle.")
 	c.setFont('MS', 10)
-	c.drawString(308, 482, "FIESTA MOTORS INC")
+	c.drawString(308, 482, dba)
 	c.drawString(308, 465, "594870R")
 	c.drawString(308, 418, owner)
 	c.drawString(308, 403, address)
