@@ -44,7 +44,7 @@ def login():
     elif request.method=="POST":
         user=request.form['user']
         password=request.form['password']
-        userfound=Database.run_sql(f"select * from users where user='{user}' AND password='{password}'")
+        userfound=Database.run_sql(f"select * from user where name='{user}' AND password='{password}'")
         if userfound:
             session["user"]=user
             return redirect(url_for('index'))
