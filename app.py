@@ -9,12 +9,14 @@ from text_reader import text_to_audio, text_to_voice
 
 load_dotenv()
 
+
 DATABASE_HOST = os.environ['DATABASE_HOST']
 DATABASE_NAME = os.environ['DATABASE_NAME']
 DATABASE_USER = os.environ['DATABASE_USER']
 DATABASE_PASSWORD = os.environ['DATABASE_PASSWORD']
 
 Database = MySQL(DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD)
+CURRENTFOLDER = os.path.dirname(__file__)
 
 app = Flask(__name__)
 CORS(app)
@@ -81,7 +83,7 @@ def upload_file():
                 user_id=session.get("id","")
                 query = f"INSERT INTO file (name, content, page, date, id_user) VALUES ('{file.filename}', '{file.filename.rsplit('.', 1)[1]}', 1, '{date}',{user_id})"
                 Database.run_sql(query)
-                file.save(os.path.join('files', file.filename))
+                file.save(os.path.join(CURRENTFOLDER,'files', file.filename))
                 return redirect(url_for('player'))  
         else:
            return render_template('convert.html', error="Invalid File")  
