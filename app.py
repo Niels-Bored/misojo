@@ -64,6 +64,7 @@ def index():
 @validate_session()
 def logout():
     session.pop("user",None)
+    session.pop("id",None)
     return redirect(url_for("login"))
 
 
