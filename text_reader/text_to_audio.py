@@ -20,15 +20,15 @@ def readPages(title, initial_page, final_page):
     engine.save_to_file(audio, output_file)
     engine.runAndWait()
 
+def convert_book(name):
+    file = open(name, 'rb')
+    readpdf = PyPDF2.PdfFileReader(file)
+    totalpages = readpdf.numPages
 
-file = open('1001-2000.pdf', 'rb')
-readpdf = PyPDF2.PdfFileReader(file)
-totalpages = readpdf.numPages
+    for i in range (2101, totalpages, 50):
+        if i+49<totalpages:
+            readPages(name, i, i+49)
+        else: 
+            readPages(name, i, totalpages)
 
-for i in range (1, totalpages, 50):
-    if i+49<totalpages:
-        #print(str(i) + ' ' +str(i+49))
-        readPages('1001-2000.pdf', i, i+49)
-    else: 
-        #print(str(i) + ' ' +str(totalpages))
-        readPages('1001-2000.pdf', i, totalpages)
+#convert_book("EYM 4001-5000.pdf")

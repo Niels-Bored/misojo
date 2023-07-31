@@ -1,11 +1,11 @@
 import os
-import io
-import time 
+from datetime import datetime
 from mysql import MySQL
 from functools import wraps
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from flask_cors import CORS
 from dotenv import load_dotenv
+from text_reader import text_to_audio, text_to_voice
 
 load_dotenv()
 
@@ -45,8 +45,10 @@ def login():
         user=request.form['user']
         password=request.form['password']
         userfound=Database.run_sql(f"select * from user where name='{user}' AND password='{password}'")
+
         if userfound:
             session["user"]=user
+            session["id"]=userfound[0]['id']
             return redirect(url_for('index'))
         else:
             return render_template('index.html', error="Invalid credentials")    
@@ -62,6 +64,34 @@ def logout():
     session.pop("user",None)
     return redirect(url_for("login"))
 
+
+
+@app.route('/convert/', methods=["GET", "POST"])
+def upload_file():
+    if request.method=="GET":           
+        return render_template('convert.html')
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filefound=Database.run_sql(f"select * from file where name='{file.filename}'")
+            if filefound:
+                return render_template('convert.html', error="There's a file with the same name")
+            else:
+                date=datetime.now()
+                user_id=session.get("id","")
+                query = f"INSERT INTO file (name, content, page, date, id_user) VALUES ('{file.filename}', '{file.filename.rsplit('.', 1)[1]}', 1, '{date}',{user_id})"
+                Database.run_sql(query)
+                file.save(os.path.join('files', file.filename))
+                return redirect(url_for('player'))  
+        else:
+           return render_template('convert.html', error="Invalid File")  
+        
+def allowed_file(filename):
+    return '.' in filename and 'pdf' == filename.rsplit('.', 1)[1]
+
+@app.route("/player/")
+def player():
+    return render_template('player.html')
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000) 

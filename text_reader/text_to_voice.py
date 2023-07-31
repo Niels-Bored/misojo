@@ -19,7 +19,7 @@ def readPage():
     engine.say(audio)
     engine.runAndWait()
 
-while(reading):
+""" while(reading):
     if keyboard.is_pressed('a'):  # if key 'q' is pressed 
         print('You Pressed A Key!')
         time.sleep (0.5)
@@ -50,5 +50,6 @@ while(reading):
         engine.say(text)
         reading=False
 
-    engine.runAndWait()    
+    engine.runAndWait() 
+ """
     
