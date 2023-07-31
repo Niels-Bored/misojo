@@ -1,7 +1,5 @@
 import pyttsx3
 import pdfplumber
-import keyboard
-import time
 
 reading = True
 page = 0
