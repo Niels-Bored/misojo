@@ -58,7 +58,18 @@ def login():
 @app.route("/")
 @validate_session()
 def index():
-    return render_template('selection.html')
+    user_id=session.get("id","")
+    files=Database.run_sql(f"select * from file where id_user={user_id}")
+    """ for item in files:
+        name=item['name'].split('-')
+        counter = 0
+        item['name']=' '
+        for substring in name:
+            if counter!=0:
+                item['name']+=substring
+            counter+=1 """
+    print(files)
+    return render_template('library.html', files=files)
 
 @app.route("/logout/")
 @validate_session()
@@ -66,8 +77,6 @@ def logout():
     session.pop("user",None)
     session.pop("id",None)
     return redirect(url_for("login"))
-
-
 
 @app.route('/convert/', methods=["GET", "POST"])
 @validate_session()
@@ -78,33 +87,34 @@ def upload_file():
         file = request.files['file']
         if file and allowed_file(file.filename):
             user_id=session.get("id","")
-            file_storage_name= str(user_id)+'-'+file.filename
-            filefound=Database.run_sql(f"select * from file where name='{file_storage_name}'")
+            file_storage_name=file.filename
+            filefound=Database.run_sql(f"select * from file where name='{file_storage_name}' and id_user={user_id}")
             if filefound:
                 return render_template('convert.html', error="There's a file with the same name")
             else:
                 date=datetime.now()
                 query = f"INSERT INTO file (name, content, page, date, id_user) VALUES ('{file_storage_name}', '{file.filename.rsplit('.', 1)[1]}', 0, '{date}',{user_id})"
                 Database.run_sql(query)
-                file.save(os.path.join(CURRENTFOLDER,'files', file_storage_name))
-                session["filename"]=file_storage_name
-                return redirect(url_for('player'))  
+                os.makedirs(os.path.join(CURRENTFOLDER,'files',f'{user_id}'), exist_ok=True)
+                file.save(os.path.join(CURRENTFOLDER,'files',f'{user_id}', file_storage_name))
+                return redirect(url_for(f'player/{file_storage_name}'))  
         else:
            return render_template('convert.html', error="Invalid File")  
         
 def allowed_file(filename):
     return '.' in filename and 'pdf' == filename.rsplit('.', 1)[1] and len(filename)<=150
 
-@app.route("/player/")
+@app.route("/player/<string:filename>")
 @validate_session()
-def player():
-    file_name = session.get("filename","")
-    filefound=Database.run_sql(f"select * from file where name='{file_name}'")
+def player(filename):
+    user_id=session.get("id","")
+    filefound=Database.run_sql(f"select * from file where name='{filename}' and id_user={user_id}")
     page = filefound[0]['page']
-    print(file_name)
+    print(filename)
     print(page)
-    book_path = os.path.join(CURRENTFOLDER,'files',  file_name)
-    text_to_audio.convert_book(book_path, file_name, page)
+    file_path = os.path.join(CURRENTFOLDER,'files', f'{user_id}',  filename)
+    print(file_path)
+    text_to_audio.convert_book(file_path, filename, page)
     return render_template('player.html')
 
 if __name__ == "__main__":
