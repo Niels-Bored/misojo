@@ -31,16 +31,9 @@ def convert_book(pdf_path, name, page):
     if(page<totalpages):
         readPages(pdf_path, name, page, page+1)
     else:
-        audio = 'Fin del contenido'
+        audio = 'Usted ha concluido el contenido'
         root_path = os.path.dirname(os.path.dirname(pdf_path))
         output_file = f"{name} final.mp3"
         output_path = os.path.join(root_path, 'static', 'audios', output_file)
         engine.save_to_file(audio, output_path)
-
-    """ for i in range (1, totalpages, 50):
-        if i+49<totalpages:
-            readPages(pdf_path, name, i, i+49)
-        else: 
-            readPages(pdf_path, name, i, totalpages) """
-
-#convert_book("EYM 4001-5000.pdf")
+        engine.runAndWait()

@@ -5,7 +5,7 @@ from functools import wraps
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from flask_cors import CORS
 from dotenv import load_dotenv
-from text_reader import text_to_audio, text_to_voice
+from text_reader import text_to_audio
 
 load_dotenv()
 
@@ -84,9 +84,10 @@ def upload_file():
                 return render_template('convert.html', error="There's a file with the same name")
             else:
                 date=datetime.now()
-                query = f"INSERT INTO file (name, content, page, date, id_user) VALUES ('{file_storage_name}', '{file.filename.rsplit('.', 1)[1]}', 1, '{date}',{user_id})"
+                query = f"INSERT INTO file (name, content, page, date, id_user) VALUES ('{file_storage_name}', '{file.filename.rsplit('.', 1)[1]}', 0, '{date}',{user_id})"
                 Database.run_sql(query)
                 file.save(os.path.join(CURRENTFOLDER,'files', file_storage_name))
+                session["filename"]=file_storage_name
                 return redirect(url_for('player'))  
         else:
            return render_template('convert.html', error="Invalid File")  
@@ -97,8 +98,13 @@ def allowed_file(filename):
 @app.route("/player/")
 @validate_session()
 def player():
-    book_path = os.path.join(CURRENTFOLDER,'files',  '1-No Longer Human.pdf')
-    text_to_audio.convert_book(book_path, '1-No Longer Human.pdf', 9)
+    file_name = session.get("filename","")
+    filefound=Database.run_sql(f"select * from file where name='{file_name}'")
+    page = filefound[0]['page']
+    print(file_name)
+    print(page)
+    book_path = os.path.join(CURRENTFOLDER,'files',  file_name)
+    text_to_audio.convert_book(book_path, file_name, page)
     return render_template('player.html')
 
 if __name__ == "__main__":
