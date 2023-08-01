@@ -70,21 +70,23 @@ def logout():
 
 
 @app.route('/convert/', methods=["GET", "POST"])
+@validate_session()
 def upload_file():
     if request.method=="GET":           
         return render_template('convert.html')
     if request.method == 'POST':
         file = request.files['file']
         if file and allowed_file(file.filename):
-            filefound=Database.run_sql(f"select * from file where name='{file.filename}'")
+            user_id=session.get("id","")
+            file_storage_name= str(user_id)+'-'+file.filename
+            filefound=Database.run_sql(f"select * from file where name='{file_storage_name}'")
             if filefound:
                 return render_template('convert.html', error="There's a file with the same name")
             else:
                 date=datetime.now()
-                user_id=session.get("id","")
-                query = f"INSERT INTO file (name, content, page, date, id_user) VALUES ('{file.filename}', '{file.filename.rsplit('.', 1)[1]}', 1, '{date}',{user_id})"
+                query = f"INSERT INTO file (name, content, page, date, id_user) VALUES ('{file_storage_name}', '{file.filename.rsplit('.', 1)[1]}', 1, '{date}',{user_id})"
                 Database.run_sql(query)
-                file.save(os.path.join(CURRENTFOLDER,'files', file.filename))
+                file.save(os.path.join(CURRENTFOLDER,'files', file_storage_name))
                 return redirect(url_for('player'))  
         else:
            return render_template('convert.html', error="Invalid File")  
@@ -93,6 +95,7 @@ def allowed_file(filename):
     return '.' in filename and 'pdf' == filename.rsplit('.', 1)[1]
 
 @app.route("/player/")
+@validate_session()
 def player():
     return render_template('player.html')
 
