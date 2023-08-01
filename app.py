@@ -92,11 +92,13 @@ def upload_file():
            return render_template('convert.html', error="Invalid File")  
         
 def allowed_file(filename):
-    return '.' in filename and 'pdf' == filename.rsplit('.', 1)[1]
+    return '.' in filename and 'pdf' == filename.rsplit('.', 1)[1] and len(filename)<=150
 
 @app.route("/player/")
 @validate_session()
 def player():
+    book_path = os.path.join(CURRENTFOLDER,'files',  '1-No Longer Human.pdf')
+    text_to_audio.convert_book(book_path, '1-No Longer Human.pdf', 9)
     return render_template('player.html')
 
 if __name__ == "__main__":

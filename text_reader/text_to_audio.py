@@ -1,15 +1,16 @@
 import pyttsx3
 import pdfplumber
 import PyPDF2
+import os
 
 engine = pyttsx3.init()
 engine.setProperty("rate", 150)
 
-def readPages(title, initial_page, final_page):
+def readPages(pdf_path, title, initial_page, final_page):
     # Read the file
     content = ""
     for i in range(initial_page, final_page):
-        with pdfplumber.open(title) as temp:
+        with pdfplumber.open(pdf_path) as temp:
             text = temp.pages[i]
             content = content + text.extract_text()
         # Control the rate. Higher rate = more speed
@@ -17,18 +18,29 @@ def readPages(title, initial_page, final_page):
     output_file = f"{title} {initial_page}-{final_page}.mp3"
     audio = content.replace ("\n", "")
     print(audio)
-    engine.save_to_file(audio, output_file)
+    root_path = os.path.dirname(os.path.dirname(pdf_path))
+    output_path = os.path.join(root_path, 'static', 'audios', output_file)
+    engine.save_to_file(audio, output_path)
     engine.runAndWait()
 
-def convert_book(name):
-    file = open(name, 'rb')
+def convert_book(pdf_path, name, page):
+    file = open(pdf_path, 'rb')
     readpdf = PyPDF2.PdfFileReader(file)
     totalpages = readpdf.numPages
 
-    for i in range (2101, totalpages, 50):
+    if(page<totalpages):
+        readPages(pdf_path, name, page, page+1)
+    else:
+        audio = 'Fin del contenido'
+        root_path = os.path.dirname(os.path.dirname(pdf_path))
+        output_file = f"{name} final.mp3"
+        output_path = os.path.join(root_path, 'static', 'audios', output_file)
+        engine.save_to_file(audio, output_path)
+
+    """ for i in range (1, totalpages, 50):
         if i+49<totalpages:
-            readPages(name, i, i+49)
+            readPages(pdf_path, name, i, i+49)
         else: 
-            readPages(name, i, totalpages)
+            readPages(pdf_path, name, i, totalpages) """
 
 #convert_book("EYM 4001-5000.pdf")
