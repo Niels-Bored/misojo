@@ -22,6 +22,7 @@ def readPages(pdf_path, title, initial_page, final_page):
         audio='No hay contenido para leer en esta página'
     root_path = os.path.dirname(os.path.dirname(os.path.dirname(pdf_path)))
     output_path = os.path.join(root_path, 'static', 'audios', output_file)
+    print(output_path)
     engine.save_to_file(audio, output_path)
     engine.runAndWait()
 
