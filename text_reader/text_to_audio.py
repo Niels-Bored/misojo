@@ -18,6 +18,8 @@ def readPages(pdf_path, title, initial_page, final_page):
     output_file = f"{title} {initial_page}-{final_page}.mp3"
     audio = content.replace ("\n", "")
     print(audio)
+    if(audio==''):
+        audio='No hay contenido para leer en esta página'
     root_path = os.path.dirname(os.path.dirname(os.path.dirname(pdf_path)))
     output_path = os.path.join(root_path, 'static', 'audios', output_file)
     engine.save_to_file(audio, output_path)

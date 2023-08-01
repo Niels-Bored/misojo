@@ -97,7 +97,7 @@ def upload_file():
                 Database.run_sql(query)
                 os.makedirs(os.path.join(CURRENTFOLDER,'files',f'{user_id}'), exist_ok=True)
                 file.save(os.path.join(CURRENTFOLDER,'files',f'{user_id}', file_storage_name))
-                return redirect(url_for(f'player/{file_storage_name}'))  
+                return redirect(url_for(f'index'))  
         else:
            return render_template('convert.html', error="Invalid File")  
         
