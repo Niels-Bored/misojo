@@ -60,14 +60,6 @@ def login():
 def index():
     user_id=session.get("id","")
     files=Database.run_sql(f"select * from file where id_user={user_id}")
-    """ for item in files:
-        name=item['name'].split('-')
-        counter = 0
-        item['name']=' '
-        for substring in name:
-            if counter!=0:
-                item['name']+=substring
-            counter+=1 """
     print(files)
     return render_template('library.html', files=files)
 

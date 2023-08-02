@@ -11,12 +11,13 @@
     <a href="/logout/">logout</a>
     <table>
         {% for item in files %}
-        <tr>
-            <td>{{item.name}}</td>
-            <td>{{item.page}}</td>
-            <td>{{item.date}}</td>
-        </tr>
+            <tr onclick="checkFile('/player/{{item.name}}')">
+                <td>{{item.name}}</td>
+                <td>{{item.page}}</td>
+                <td>{{item.date}}</td>
+            </tr>
         {% endfor %}
     </table>
 </body>
+<script src="{{ url_for('static', filename='JS/library.js') }}"></script>
 </html>
