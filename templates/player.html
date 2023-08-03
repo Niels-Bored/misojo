@@ -12,6 +12,7 @@
         <audio src="{{ url_for('static', filename=audio_path) }}" controls autoplay></audio>
         <div class="audio-buttons">
             <p class="audio-button" onclick="previousPage('{{filename}}','{{page}}')">Anterior</p>
+            <a class="audio-button" href="/">Home</a>
             <p class="audio-button" onclick="nextPage('{{filename}}','{{page}}')">Siguiente</p>
         </div>
     </form>

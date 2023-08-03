@@ -130,6 +130,8 @@ def player_with_page(filename, page):
     audio_path = f'/audios/{user_id}/{audioname}'
     print(audio_path)
     filename+=".pdf"
+    query = f"UPDATE file SET page = '{page}' WHERE  name = '{filename}' AND id_user = '{user_id}'"
+    Database.run_sql(query)
     return render_template('player.html', audio_path=audio_path, filename=filename, page=page)
 
 if __name__ == "__main__":
