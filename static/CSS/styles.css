@@ -17,6 +17,30 @@ body{
     box-sizing: border-box
 }
 
+.audio-buttons{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.audio-button{
+    width: 100px;
+    padding: 10px;
+    font-size: 15px;
+    color: white;
+    background-color: black;
+    border: none;
+    box-sizing: border-box;
+}
+
+.audio-button:hover{
+    cursor: pointer;
+    color: black;
+    background-color: white;
+}
+
 .form-login{
     background-color: white;
     margin: 50px auto;

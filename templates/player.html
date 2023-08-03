@@ -10,6 +10,11 @@
 <body>
     <form class="form-audio" method="post" action="." enctype="multipart/form-data">
         <audio src="{{ url_for('static', filename=audio_path) }}" controls autoplay></audio>
+        <div class="audio-buttons">
+            <p class="audio-button" onclick="previousPage('{{filename}}','{{page}}')">Anterior</p>
+            <p class="audio-button" onclick="nextPage('{{filename}}','{{page}}')">Siguiente</p>
+        </div>
     </form>
 </body>
+<script src="{{ url_for('static', filename='JS/player.js') }}"></script>
 </html>

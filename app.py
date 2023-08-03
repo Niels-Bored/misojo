@@ -112,7 +112,25 @@ def player(filename):
     audioname += '.mp3'
     audio_path = f'/audios/{user_id}/{audioname}'
     print(audio_path)
-    return render_template('player.html', audio_path=audio_path)
+    filename+=".pdf"
+    return render_template('player.html', audio_path=audio_path, filename=filename, page=page)
+
+@app.route("/player/<string:filename>/<int:page>")
+@validate_session()
+def player_with_page(filename, page):
+    user_id=session.get("id","")
+    print(filename)
+    print(page)
+    file_path = os.path.join(CURRENTFOLDER,'files', f'{user_id}',  filename)
+    print(file_path)
+    text_to_audio.convert_book(file_path, filename, page, str(user_id))
+    filename = filename.replace(".pdf", "")    
+    audioname = f'{filename} {page}-{page+1}'
+    audioname += '.mp3'
+    audio_path = f'/audios/{user_id}/{audioname}'
+    print(audio_path)
+    filename+=".pdf"
+    return render_template('player.html', audio_path=audio_path, filename=filename, page=page)
 
 if __name__ == "__main__":
     app.run(debug=True) 
