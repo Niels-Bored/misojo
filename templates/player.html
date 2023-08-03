@@ -9,7 +9,7 @@
 </head>
 <body>
     <form class="form-login" method="post" action="." enctype="multipart/form-data">
-        <p>Insert an audio player here</p>
+        <audio src="{{ url_for('static', filename=audio_path) }}" controls autoplay></audio>
     </form>
 </body>
 </html>

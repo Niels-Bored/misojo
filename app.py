@@ -106,8 +106,13 @@ def player(filename):
     print(page)
     file_path = os.path.join(CURRENTFOLDER,'files', f'{user_id}',  filename)
     print(file_path)
-    text_to_audio.convert_book(file_path, filename, page)
-    return render_template('player.html')
+    text_to_audio.convert_book(file_path, filename, page, str(user_id))
+    filename = filename.replace(".pdf", "")    
+    audioname = f'{filename} {page}-{page+1}'
+    audioname += '.mp3'
+    audio_path = f'/audios/{user_id}/{audioname}'
+    print(audio_path)
+    return render_template('player.html', audio_path=audio_path)
 
 if __name__ == "__main__":
     app.run(debug=True) 

@@ -6,7 +6,7 @@ import os
 engine = pyttsx3.init()
 engine.setProperty("rate", 150)
 
-def readPages(pdf_path, title, initial_page, final_page):
+def readPages(pdf_path, title, initial_page, final_page, user_id):
     # Read the file
     content = ""
     for i in range(initial_page, final_page):
@@ -21,22 +21,24 @@ def readPages(pdf_path, title, initial_page, final_page):
     if(audio==''):
         audio='No hay contenido para leer en esta página'
     root_path = os.path.dirname(os.path.dirname(os.path.dirname(pdf_path)))
-    output_path = os.path.join(root_path, 'static', 'audios', output_file)
+    os.makedirs(os.path.join(root_path, 'static', 'audios', f'{user_id}'), exist_ok=True)
+    output_path = os.path.join(root_path, 'static', 'audios', f'{user_id}', output_file)
     print(output_path)
     engine.save_to_file(audio, output_path)
     engine.runAndWait()
 
-def convert_book(pdf_path, name, page):
+def convert_book(pdf_path, name, page, user_id):
     file = open(pdf_path, 'rb')
     readpdf = PyPDF2.PdfFileReader(file)
     totalpages = readpdf.numPages
 
     if(page<totalpages):
-        readPages(pdf_path, name, page, page+1)
+        readPages(pdf_path, name, page, page+1, user_id)
     else:
         audio = 'Usted ha concluido el contenido'
         root_path = os.path.dirname(os.path.dirname(pdf_path))
-        output_file = f"{name} final.mp3"
-        output_path = os.path.join(root_path, 'static', 'audios', output_file)
+        output_file = f"{name} {page}-{page+1}.mp3"
+        os.makedirs(os.path.join(root_path, 'static', 'audios', f'{user_id}'), exist_ok=True)
+        output_path = os.path.join(root_path, 'static', 'audios', f'{user_id}', output_file)
         engine.save_to_file(audio, output_path)
         engine.runAndWait()
