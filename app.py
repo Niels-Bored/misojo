@@ -55,6 +55,29 @@ def login():
         else:
             return render_template('index.html', error="Invalid credentials")    
 
+@app.route("/signup/", methods=["GET", "POST"])
+def sigup():
+    if request.method=="GET":           
+        return render_template('register.html', error="")
+    elif request.method=="POST":
+        user=request.form['user']
+        password=request.form['password']
+        confirmpassword=request.form['confirmpassword']
+
+        if password == confirmpassword:
+            register=Database.run_sql(f"INSERT INTO user (name, password) VALUES ('{user}', '{password}');")
+            userfound=Database.run_sql(f"select * from user where name='{user}' AND password='{password}'")
+
+            if userfound:
+                session["user"]=user
+                session["id"]=userfound[0]['id']
+                return redirect(url_for('index')) 
+            else: 
+                return render_template('register.html', error="Error en el registro")      
+        else: 
+            return render_template('register.html', error="Las contraseñas no coinciden")
+
+
 @app.route("/")
 @validate_session()
 def index():

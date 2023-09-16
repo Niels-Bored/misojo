@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+    <title>Login</title>
+</head>
+<body>
+    <form class="form-login" method="post" action=".">
+        <label class="label-login">User:</label>
+        <input class="input-login" name="user" type="text" required>
+        <label class="label-login">Password:</label>
+        <input class="input-login" name="password" type="password" required>
+        <label class="label-login">Confirm Password:</label>
+        <input class="input-login" name="confirmpassword" type="password" required>
+        <input type="submit">
+        <a href="/login/">Login</a>
+        <p>{{error}}</p>
+    </form>
+</body>
+</html>
