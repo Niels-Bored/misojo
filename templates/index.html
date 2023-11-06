@@ -9,13 +9,14 @@
 </head>
 <body>
     <form class="form-login" method="post" action=".">
-        <label class="label-login">User:</label>
-        <input class="input-login" name="user" type="text" required>
-        <label class="label-login">Password:</label>
-        <input class="input-login" name="password" type="password" required>
-        <input type="submit">
-        <a href="/signup/">Sign up</a>
+        <label class="label-login" id="lblUser" >Usuario:</label>
+        <input class="input-login" id="inpUser" name="user" type="text" required>
+        <label class="label-login" id="lblPass" >Contraseña:</label>
+        <input class="input-login" id="inpPass" name="password" type="password" required>
+        <input type="submit" id="btnsubmit">
+        <a href="/signup/" id="btnsignup">Registrarse</a>
         <p>{{error}}</p>
     </form>
 </body>
+<script src="{{ url_for('static', filename='JS/index.js') }}"></script>
 </html>
