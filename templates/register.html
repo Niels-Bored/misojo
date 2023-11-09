@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/register.css') }}">
     <title>Login</title>
 </head>
 <body>
-    <form class="form-login" method="post" action=".">
-        <label class="label-login">User:</label>
-        <input class="input-login" name="user" type="text" required>
-        <label class="label-login">Password:</label>
-        <input class="input-login" name="password" type="password" required>
-        <label class="label-login">Confirm Password:</label>
-        <input class="input-login" name="confirmpassword" type="password" required>
-        <input type="submit">
-        <a href="/login/">Login</a>
-        <p>{{error}}</p>
-    </form>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <br><br>
+            <form method="post" action=".">
+                <input id="inpUser" class="fadeIn input" type="text" placeholder="Usuario" required>
+                <input id="inpPass" class="fadeIn input" type="password" placeholder="Contraseña" required>
+                <input id="inpCPass" class="fadeIn input" name="confirmpassword" type="password" placeholder="Confirmar Contraseña" required>
+                <input id="btnsubmit" class="fadeIn btn" type="submit" value="Registrarse">
+                <div id="formFooter">
+                    <a href="/login/" id="btnLogin" class="underlineHover">Login</a>
+                </div>
+                <p>{{error}}</p>
+            </form>
+        </div>
+    </div>
+    
 </body>
+<script src="{{ url_for('static', filename='JS/register.js') }}"></script>
 </html>
