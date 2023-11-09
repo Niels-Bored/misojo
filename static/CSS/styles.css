@@ -230,7 +230,7 @@ img{
 }
 
 label, a {
-    width: calc(100px + 10px + 10px);
+    width: calc(100px);
     display: inline-block;
   }
   

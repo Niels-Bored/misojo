@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/index.css') }}">
     <title>Login</title>
 </head>
 <body>
-    <form class="form-login" method="post" action=".">
-        <label class="label-login" id="lblUser" >Usuario:</label>
-        <input class="input-login" id="inpUser" name="user" type="text" required>
-        <label class="label-login" id="lblPass" >Contraseña:</label>
-        <input class="input-login" id="inpPass" name="password" type="password" required>
-        <input type="submit" id="btnsubmit">
-        <a href="/signup/" id="btnsignup">Registrarse</a>
-        <p>{{error}}</p>
-    </form>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <br><br>
+            <form method="post" action=".">
+                <input id="inpUser" type="text" class="fadeIn second" placeholder="Usuario" required>
+                <input id="inpPass" type="password" class="fadeIn third" placeholder="Contraseña" required>
+                <input type="submit" id="btnsubmit" class="fadeIn fourth" value="Ingresar">
+                <div id="formFooter">
+                    <a href="/signup/" id="btnsignup" class="underlineHover">Registrarse</a>
+                </div>
+                <p>{{error}}</p>
+            </form>
+        </div>
+    </div>
+    
 </body>
 <script src="{{ url_for('static', filename='JS/index.js') }}"></script>
 </html>

@@ -1,36 +1,28 @@
-document.getElementById("lblUser").addEventListener("mouseover", ()=>{
-    talk(document.getElementById("lblUser").textContent);
-});
-
-document.getElementById("lblPass").addEventListener("mouseover", ()=>{
-    talk(document.getElementById("lblPass").textContent);
-});
-
 document.getElementById("inpUser").addEventListener("mouseover", ()=>{
-    talk("Entrada usuario");
+    talk("Usuario");
 });
 
 document.getElementById("inpUser").addEventListener("keyup", (e)=> {
     if( e.which == 9 ) {
-        talk("Entrada usuario");
+        talk("Usuario");
 }});
 
 document.getElementById("inpPass").addEventListener("mouseover", ()=>{
-    talk("Entrada Contraseña");
+    talk("Contraseña");
 });
 
 document.getElementById("inpPass").addEventListener("keyup", (e)=> {
     if( e.which == 9 ) {
-        talk("Entrada Contraseña");
+        talk("Contraseña");
 }});
 
 document.getElementById("btnsubmit").addEventListener("mouseover", ()=>{
-    talk("Enviar consulta");
+    talk("Ingresar");
 });
 
 document.getElementById("btnsubmit").addEventListener("keyup", (e)=> {
     if( e.which == 9 ) {
-        talk("Enviar consulta");
+        talk("Ingresar");
 }});
 
 document.getElementById("btnsignup").addEventListener("mouseover", ()=>{
