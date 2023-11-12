@@ -10,16 +10,17 @@
 <body>
     <div class="wrapper fadeInDown">
         <div id="formContent">
+            <p tabindex="1" id="regi">Registro de Usuario</p>
             <br><br>
             <form method="post" action=".">
-                <input id="inpUser" class="fadeIn input" type="text" placeholder="Usuario" required>
-                <input id="inpPass" class="fadeIn input" type="password" placeholder="Contraseña" required>
-                <input id="inpCPass" class="fadeIn input" name="confirmpassword" type="password" placeholder="Confirmar Contraseña" required>
-                <input id="btnsubmit" class="fadeIn btn" type="submit" value="Registrarse">
+                <input tabindex="2" id="inpUser" class="fadeIn input" type="text" placeholder="Usuario" required>
+                <input tabindex="3" id="inpPass" class="fadeIn input" type="password" placeholder="Contraseña" required>
+                <input tabindex="4" id="inpCPass" class="fadeIn input" name="confirmpassword" type="password" placeholder="Confirmar Contraseña" required>
+                <input tabindex="5" id="btnsubmit" class="fadeIn btn" type="submit" value="Registrarse">
                 <div id="formFooter">
-                    <a href="/login/" id="btnLogin" class="underlineHover">Login</a>
+                    <a href="/login/" tabindex="6" id="btnLogin" class="underlineHover">Login</a>
                 </div>
-                <p>{{error}}</p>
+                <p tabindex="7" id="error">{{error}}</p>
             </form>
         </div>
     </div>

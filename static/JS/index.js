@@ -34,6 +34,24 @@ document.getElementById("btnsignup").addEventListener("keyup", (e)=> {
         talk("Registrarse");
 }});
 
+document.getElementById("error").addEventListener("mouseover", ()=>{
+    talk("Credenciales Inválidas");
+});
+
+document.getElementById("error").addEventListener("keyup", (e)=> {
+    if( e.which == 9 ) {
+        talk("Credenciales Inválidas");
+}});
+
+document.getElementById("inises").addEventListener("mouseover", ()=>{
+    talk("Inicio de sesión");
+});
+
+document.getElementById("inises").addEventListener("keyup", (e)=> {
+    if( e.which == 9 ) {
+        talk("Inicio de sesión");
+}});
+
 function talk(text) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'es-MX';

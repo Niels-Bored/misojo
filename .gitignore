@@ -3,3 +3,4 @@ __pycache__
 files/*
 *.pdf
 *.mp3
+env

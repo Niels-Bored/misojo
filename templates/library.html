@@ -4,21 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/library.css') }}">
     <title>Your Library</title>
 </head>
 <body>
-    <a href="/logout/">logout</a>
-    <table>
-        {% for item in files %}
-            <tr onclick="checkFile('/player/{{item.name}}')">
-                <td>{{item.name}}</td>
-                <td>{{item.page}}</td>
-                <td>{{item.date}}</td>
-            </tr>
-        {% endfor %}
-    </table>
-    <a href="/convert">Convert File</a>
+    <nav class="navbar">
+        <h1 tabindex="1">Librería</h1>
+        <a tabindex="2" href="/logout/">Logout</a>
+    </nav>    
+    <div class="wrapper">
+        <div id="formContent">
+            <div class="container">
+                <p tabindex="3">Tabla de libros</p>
+                <table>
+                    <thead>
+                        <td tabindex="4">Nombre</td>
+                        <td tabindex="4">Página</td>
+                        <td tabindex="4">Fecha</td>
+                    </thead>
+                    {% for item in files %}
+                        <tr onclick="checkFile('/player/{{item.name}}')" onkeypress="isEnter('{{item.name}}')">
+                            <td tabindex="5">{{item.name}}</td>
+                            <td tabindex="5">{{item.page}}</td>
+                            <td tabindex="5">{{item.date}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <br>
+                <a  tabindex="6" href="/convert">Convertir archivo</a>
+            </div>    
+        </div>
+    </div>
 </body>
 <script src="{{ url_for('static', filename='JS/library.js') }}"></script>
 </html>

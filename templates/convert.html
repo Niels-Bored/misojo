@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/library.css') }}">
     <title>Convert File</title>
 </head>
 <body>
-    <form class="form-login" method="post" action="." enctype="multipart/form-data">
-        <label class="label-login">Load File:</label>
-        <input class="input-login" name="file" type="file" required>
-        <input type="submit">
-        <p>{{error}}</p>
-    </form>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <h3 tabindex="1">Convertir archivos</h3>
+            <br>
+            <form class="form-login" method="post" action="." enctype="multipart/form-data">
+                <label tabindex="2" class="label-login">Cargar archivo:</label>
+                <br>
+                <input id="btnsel" tabindex="3" class="input-login" name="file" type="file" required>
+                <input id="btncon" tabindex="4" type="submit" value="Convertir archivo">
+                <p tabindex="5">{{error}}</p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
+<script src="{{ url_for('static', filename='JS/convert.js') }}"></script>

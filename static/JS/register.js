@@ -43,6 +43,23 @@ document.getElementById("btnLogin").addEventListener("keyup", (e)=> {
         talk("Login");
 }});
 
+document.getElementById("error").addEventListener("mouseover", ()=>{
+    talk("Credenciales Inválidas");
+});
+
+document.getElementById("error").addEventListener("keyup", (e)=> {
+    if( e.which == 9 ) {
+        talk("Credenciales Inválidas");
+}});
+
+document.getElementById("regi").addEventListener("mouseover", ()=>{
+    talk("Registro de Usuario");
+});
+
+document.getElementById("regi").addEventListener("keyup", (e)=> {
+    if( e.which == 9 ) {
+        talk("Registro de Usuario");
+}});
 function talk(text) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'es-MX';
