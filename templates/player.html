@@ -4,18 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/player.css') }}">
     <title>Player</title>
 </head>
 <body>
-    <form class="form-audio" method="post" action="." enctype="multipart/form-data">
-        <audio src="{{ url_for('static', filename=audio_path) }}" controls autoplay></audio>
-        <div class="audio-buttons">
-            <p class="audio-button" onclick="previousPage('{{filename}}','{{page}}')">Anterior</p>
-            <a class="audio-button" href="/">Home</a>
-            <p class="audio-button" onclick="nextPage('{{filename}}','{{page}}')">Siguiente</p>
+    <div class="wrapper">
+        <div id="formContent">
+            <br>
+            <h3 tabindex="1" >Reproductor de Audio</h3>
+            <br>
+            <form class="form-audio" method="post" action="." enctype="multipart/form-data">
+                <audio src="{{ url_for('static', filename=audio_path) }}" autoplay tabindex="2">
+
+                </audio>   
+                <div>
+                    <button tabindex="3" id="btnplay" type="button">Reproducir</button>
+                    <button tabindex="4" id="btnstop" type="button">Parar</button>
+                </div>
+                <br><br>             
+                <div class="audio-buttons" style="display: inline-flex;">
+                    <p tabindex="5" class="audio-button" onclick="previousPage('{{filename}}','{{page}}')">
+                        <i class="fas fa-arrow-left"></i> Anterior
+                    </p>
+                    <a tabindex="6" class="audio-button" href="/">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <p tabindex="7" class="audio-button" onclick="nextPage('{{filename}}','{{page}}')">
+                        <i class="fas fa-arrow-right"></i> Siguiente
+                    </p>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </body>
 <script src="{{ url_for('static', filename='JS/player.js') }}"></script>
 </html>
