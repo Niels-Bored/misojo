@@ -13,15 +13,16 @@
             <p tabindex="1" id="inises">Inicio de sesión</p>
             <br><br>
             <form method="post" action=".">
-                <input tabindex="2" id="inpUser" type="text" class="fadeIn input" name="user" placeholder="Usuario" required>
-                <input tabindex="3" id="inpPass" type="password" class="fadeIn input" name="password" placeholder="Contraseña" required>
-                <input tabindex="4" type="submit" id="btnsubmit" class="fadeIn btn" value="Ingresar">
-                <div id="formFooter">
-                    <a tabindex="5" href="/signup/" id="btnsignup" class="underlineHover">Registrarse</a>
-                </div>
-                <p tabindex="6" id="error">{{error}}</p>
+              <input tabindex="2" id="inpUser" type="text" class="fadeIn input" name="user" placeholder="Usuario" required>
+              <input tabindex="-1" id="inpPass" type="password" class="fadeIn input" name="password" placeholder="Contraseña" required>
+              <input tabindex="-1" type="submit" id="btnsubmit" class="fadeIn btn" value="Ingresar">
+              <div tabindex="-1" id="formFooter">
+                <a tabindex="-1" href="/signup/" id="btnsignup" class="underlineHover">Registrarse</a>
+              </div>
+              <p tabindex="-1" id="error">{{error}}</p>
             </form>
-        </div>
+          </div>
+          
     </div>
     
 </body>

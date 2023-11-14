@@ -12,10 +12,6 @@ function isEnter(item) {
 const h1s = document.querySelectorAll("h1");
 
 for (const h1 of h1s) {
-    h1.addEventListener("mouseover", ()=>{
-        talk("Librería");
-    });
-
     h1.addEventListener("keyup", (e)=> {
         if( e.which == 9 ) {
         console.log("tit");
@@ -27,10 +23,6 @@ for (const h1 of h1s) {
 const as = document.querySelectorAll("a");
 
 for (const a of as) {
-    a.addEventListener("mouseover", ()=>{
-        talk(a.textContent);
-    });
-
     a.addEventListener("keyup", (e)=> {
         if( e.which == 9 ) {
             talk(a.textContent);
@@ -41,10 +33,6 @@ for (const a of as) {
 const ps = document.querySelectorAll("p");
 
 for (const p of ps) {
-    p.addEventListener("mouseover", ()=>{
-        talk(p.textContent);
-    });
-
     p.addEventListener("keyup", (e)=> {
         if( e.which == 9 ) {
         console.log("p tag");
@@ -57,10 +45,6 @@ for (const p of ps) {
 const tds = document.querySelectorAll("td");
 
 for (const td of tds) {
-    td.addEventListener("mouseover", ()=>{
-        talk(td.textContent);
-    });
-
     td.addEventListener("keyup", (e)=> {
         if( e.which == 9 ) {
         console.log("td tag");

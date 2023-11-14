@@ -14,10 +14,6 @@ function nextPage(filename, page){
 
 const h3 = document.querySelector("h3");
 
-h3.addEventListener("mouseover", ()=>{
-    talk(h3.textContent);
-});
-
 h3.addEventListener("keyup", (e)=> {
     if( e.which == 9 ) {
         talk(h3.textContent);
@@ -26,24 +22,14 @@ h3.addEventListener("keyup", (e)=> {
 const ps = document.querySelectorAll("p");
 
 for (const p of ps) {
-    p.addEventListener("mouseover", ()=>{
-        talk(p.textContent);
-    });
-
     p.addEventListener("keyup", (e)=> {
         if( e.which == 9 ) {
-        console.log("p tag");
-
             talk(p.textContent);
         }
     });
 }
 
 const a = document.querySelector("a");
-
-a.addEventListener("mouseover", ()=>{
-    talk(a.textContent);
-});
 
 a.addEventListener("keyup", (e)=> {
     if( e.which == 9 ) {
@@ -76,10 +62,6 @@ stopButton.addEventListener('click', () => {
 const buttons = document.querySelectorAll("button");
 
 for (const button of buttons) {
-    button.addEventListener("mouseover", ()=>{
-        talk(button.textContent);
-    });
-
     button.addEventListener("keyup", (e)=> {
         if( e.which == 9 ) {
         console.log("p tag");

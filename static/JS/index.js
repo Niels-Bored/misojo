@@ -1,54 +1,34 @@
-document.getElementById("inpUser").addEventListener("mouseover", ()=>{
-    talk("Usuario");
-});
-
 document.getElementById("inpUser").addEventListener("keyup", (e)=> {
-    if( e.which == 9 ) {
+    if( e.which == 9 || e.which == 37 || e.which == 39) {
         talk("Usuario");
 }});
 
-document.getElementById("inpPass").addEventListener("mouseover", ()=>{
-    talk("Contraseña");
-});
-
 document.getElementById("inpPass").addEventListener("keyup", (e)=> {
-    if( e.which == 9 ) {
+    if( e.which == 9 || e.which == 37 || e.which == 39) {
         talk("Contraseña");
 }});
 
-document.getElementById("btnsubmit").addEventListener("mouseover", ()=>{
-    talk("Ingresar");
-});
-
 document.getElementById("btnsubmit").addEventListener("keyup", (e)=> {
-    if( e.which == 9 ) {
+    if( e.which == 9 || e.which == 37 || e.which == 39) {
         talk("Ingresar");
 }});
 
-document.getElementById("btnsignup").addEventListener("mouseover", ()=>{
-    talk("Registrarse");
-});
-
 document.getElementById("btnsignup").addEventListener("keyup", (e)=> {
-    if( e.which == 9 ) {
+    console.log("Nel prro");
+    if( e.which == 9 || e.which == 37 || e.which == 39) {
         talk("Registrarse");
 }});
 
-document.getElementById("error").addEventListener("mouseover", ()=>{
-    talk("Credenciales Inválidas");
-});
-
 document.getElementById("error").addEventListener("keyup", (e)=> {
-    if( e.which == 9 ) {
-        talk("Credenciales Inválidas");
+    if( e.which == 9 || e.which == 37 || e.which == 39) {
+        if (document.getElementById("error").textContent != "") {
+            talk("Credenciales inválidas");
+        }
 }});
 
-document.getElementById("inises").addEventListener("mouseover", ()=>{
-    talk("Inicio de sesión");
-});
 
 document.getElementById("inises").addEventListener("keyup", (e)=> {
-    if( e.which == 9 ) {
+    if( e.which == 9 || e.which == 37 || e.which == 39) {
         talk("Inicio de sesión");
 }});
 
@@ -57,3 +37,50 @@ function talk(text) {
     utterance.lang = 'es-MX';
     speechSynthesis.speak(utterance);
 }
+
+/*
+
+No me gustó de todo el resultado
+
+const KEYCODE = {
+    LEFT: 37,
+    RIGHT: 39
+  };
+  
+  const formContent = document.querySelector('#formContent');
+  formContent.addEventListener('keydown', onKeyDown);
+  
+  function onKeyDown(event) {
+    switch (event.keyCode) {
+      case KEYCODE.RIGHT:
+        event.preventDefault();
+        focusNextFormItem();
+        break;
+      case KEYCODE.LEFT:
+        event.preventDefault();
+        focusPreviousFormItem();
+        break;
+    }
+  }
+  
+  function focusNextFormItem() {
+    const item = document.activeElement;
+    if (item.nextElementSibling) {
+      activateFormItem(item.nextElementSibling);
+    }
+  }
+  
+
+  function focusPreviousFormItem() {
+    const item = document.activeElement;
+    if (item.previousElementSibling) {
+      activateFormItem(item.previousElementSibling);
+    }
+  }
+  function activateFormItem(item) {
+    formContent.querySelectorAll('[tabindex]').forEach((el) => el.tabIndex = -1);
+    
+    item.tabIndex = 0;
+    item.focus();
+  }
+  */
